@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punjabi Dera — Gujrat | Sip, Sawad, Tay Sutta!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+/* ============ TOKENS ============ */
+:root{
+  --font-display:'Cinzel',serif;
+  --font-script:'Dancing Script',cursive;
+  --font-body:'Poppins',sans-serif;
+
+  --coal:#c1502e;
+  --coal-light:#e0704a;
+  --gold-400:#f0d488;
+  --gold-500:#d4af37;
+  --gold-600:#b8901f;
+
+  --radius:14px;
+  --shadow-soft:0 20px 50px -20px rgba(0,0,0,.5);
+  --transition:.35s cubic-bezier(.4,0,.2,1);
+}
+
+html[data-theme="dark"]{
+  --bg:#081611;
+  --bg-alt:#0d2016;
+  --surface:#0f2418;
+  --surface-2:#122c1d;
+  --border:rgba(212,175,55,.28);
+  --text:#f3ecd9;
+  --text-dim:#c9c2a8;
+  --text-faint:#8fa294;
+  --header-bg:rgba(8,22,17,.86);
+}
+html[data-theme="light"]{
+  --bg:#faf6ea;
+  --bg-alt:#f2ead3;
+  --surface:#ffffff;
+  --surface-2:#fbf7ea;
+  --border:rgba(184,144,31,.35);
+  --text:#16261a;
+  --text-dim:#3f4f42;
+  --text-faint:#6d7a6f;
+  --header-bg:rgba(250,246,234,.88);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.55;
+  transition:background var(--transition), color var(--transition);
+  overflow-x:hidden;
+}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none;}
+img{max-width:100%; display:block;}
+.wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+::selection{background:var(--gold-500); color:#1a1002;}
+
+/* ============ DECOR: ornamental frame ============ */
+.ornate-frame{
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+}
+.ornate-frame::before, .ornate-frame::after{
+  content:"";
+  position:absolute;
+  width:22px; height:22px;
+  border:2px solid var(--gold-500);
+  opacity:.85;
+}
+.ornate-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; border-top-left-radius:8px;}
+.ornate-frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; border-bottom-right-radius:8px;}
+
+.eyebrow{
+  font-family:var(--font-display);
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  color:var(--gold-500);
+  display:flex; align-items:center; gap:14px;
+  justify-content:center;
+  margin-bottom:14px;
+}
+.eyebrow::before,.eyebrow::after{
+  content:"";
+  width:34px; height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-500));
+}
+.eyebrow::after{transform:scaleX(-1);}
+
+.section-title{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(1.7rem,3.2vw,2.6rem);
+  text-align:center;
+  color:var(--text);
+}
+.section-sub{
+  text-align:center;
+  color:var(--text-faint);
+  max-width:520px;
+  margin:10px auto 0;
+  font-size:.95rem;
+}
+
+/* ============ HEADER ============ */
+header{
+  position:sticky; top:0; z-index:100;
+  background:var(--header-bg);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 24px;
+  max-width:1180px; margin:0 auto;
+}
+.brand{display:flex; align-items:center; gap:12px;}
+.brand-mark{
+  width:44px; height:44px; border-radius:50%;
+  border:2px solid var(--gold-500);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-weight:700; color:var(--gold-500);
+  font-size:1rem; flex-shrink:0;
+}
+.brand-name{font-family:var(--font-display); font-weight:700; font-size:1.05rem; letter-spacing:.04em;}
+.brand-name span{display:block; font-family:var(--font-body); font-weight:400; letter-spacing:.25em; font-size:.55rem; color:var(--gold-500); text-transform:uppercase; margin-top:2px;}
+
+.nav-links{display:flex; gap:26px;}
+.nav-links a{
+  font-size:.82rem; letter-spacing:.03em; color:var(--text-dim);
+  transition:color var(--transition);
+  position:relative;
+}
+.nav-links a:hover{color:var(--gold-500);}
+
+.nav-actions{display:flex; align-items:center; gap:14px;}
+
+.theme-toggle{
+  width:52px; height:28px; border-radius:20px;
+  background:var(--surface-2); border:1px solid var(--border);
+  position:relative; cursor:pointer;
+  flex-shrink:0;
+}
+.theme-toggle .knob{
+  position:absolute; top:2px; left:2px;
+  width:22px; height:22px; border-radius:50%;
+  background:var(--gold-500);
+  transition:transform var(--transition);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px;
+}
+html[data-theme="light"] .theme-toggle .knob{transform:translateX(24px);}
+
+.btn{
+  font-family:var(--font-body); font-weight:600; font-size:.82rem;
+  padding:11px 22px; border-radius:30px; cursor:pointer; border:none;
+  display:inline-flex; align-items:center; gap:8px;
+  transition:transform var(--transition), box-shadow var(--transition), background var(--transition);
+  white-space:nowrap;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold-400),var(--gold-600));
+  color:#1a1002;
+  box-shadow:0 8px 24px -8px rgba(212,175,55,.55);
+}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 28px -8px rgba(212,175,55,.7);}
+.btn-outline{
+  background:transparent; color:var(--text); border:1px solid var(--border);
+}
+.btn-outline:hover{border-color:var(--gold-500); color:var(--gold-500);}
+
+@media(max-width:860px){ .nav-links{display:none;} }
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  padding:90px 24px 70px;
+  text-align:center;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(212,175,55,.16), transparent 60%),
+    var(--bg);
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(45deg, var(--border) 0, var(--border) 1px, transparent 1px, transparent 60px);
+  opacity:.35;
+  pointer-events:none;
+}
+.hero-inner{position:relative; z-index:2; max-width:760px; margin:0 auto;}
+.hero-plate{
+  width:120px; height:120px; margin:0 auto 22px;
+  border-radius:50%;
+  border:2px solid var(--gold-500);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  animation:riseIn .9s ease both;
+}
+.hero-plate::before{
+  content:""; position:absolute; inset:8px;
+  border:1px solid var(--gold-500); border-radius:50%; opacity:.5;
+}
+.hero-plate span{font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--gold-500);}
+.hero-tagline{
+  font-family:var(--font-script);
+  font-size:clamp(1.6rem,3vw,2.1rem);
+  color:var(--gold-500);
+  margin-bottom:6px;
+  animation:riseIn 1s .1s ease both;
+}
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(2.6rem,7vw,5.2rem);
+  letter-spacing:.05em;
+  line-height:1;
+  background:linear-gradient(180deg,var(--text),var(--gold-500) 140%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:riseIn 1s .18s ease both;
+}
+.hero-desc{
+  margin:22px auto 0; max-width:480px;
+  color:var(--text-dim); font-size:1rem;
+  animation:riseIn 1s .28s ease both;
+}
+.hero-ctas{
+  margin-top:34px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  animation:riseIn 1s .36s ease both;
+}
+.hero-badges{
+  margin-top:56px; display:flex; gap:34px; justify-content:center; flex-wrap:wrap;
+  animation:riseIn 1s .44s ease both;
+}
+.hero-badges .badge{
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint);
+  max-width:100px; text-align:center;
+}
+.hero-badges .badge .ic{font-size:1.4rem;}
+
+@keyframes riseIn{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+
+/* smoke */
+.smoke{position:absolute; bottom:-40px; width:2px; opacity:0;}
+.smoke.s1{left:35%;} .smoke.s2{left:50%;} .smoke.s3{left:65%;}
+
+/* ============ CATEGORY NAV ============ */
+.catnav-wrap{
+  position:sticky; top:73px; z-index:90;
+  background:var(--header-bg); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.catnav{
+  display:flex; gap:10px; overflow-x:auto; padding:14px 24px;
+  max-width:1180px; margin:0 auto;
+  scrollbar-width:none;
+}
+.catnav::-webkit-scrollbar{display:none;}
+.catnav a{
+  flex-shrink:0;
+  font-size:.78rem; letter-spacing:.03em; font-weight:500;
+  padding:8px 18px; border-radius:20px;
+  border:1px solid var(--border); color:var(--text-dim);
+  transition:all var(--transition);
+}
+.catnav a:hover{border-color:var(--gold-500); color:var(--gold-500);}
+
+/* ============ MENU SECTIONS ============ */
+.menu-section{padding:80px 0 20px;}
+.menu-section.alt{background:var(--bg-alt);}
+
+.cat-head{margin-bottom:44px;}
+
+/* deal cards (rice platters) */
+.deals-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:10px;
+}
+@media(max-width:900px){.deals-grid{grid-template-columns:1fr;}}
+.deal-card{
+  background:var(--surface); padding:30px 26px; position:relative;
+  display:flex; flex-direction:column; gap:16px;
+}
+.deal-card.featured{
+  background:linear-gradient(160deg,var(--surface-2),var(--surface));
+  border-color:var(--gold-500);
+}
+.deal-card .ribbon{
+  position:absolute; top:16px; right:-1px;
+  background:var(--coal); color:#fff; font-size:.65rem; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase;
+  padding:5px 14px 5px 18px; border-radius:6px 0 0 6px;
+}
+.deal-num{font-family:var(--font-display); color:var(--gold-500); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase;}
+.deal-name{font-family:var(--font-display); font-weight:700; font-size:1.05rem;}
+.deal-price{font-family:var(--font-display); font-size:2.4rem; font-weight:800; color:var(--gold-500);}
+.deal-price sup{font-size:1rem; font-weight:600; margin-right:2px;}
+.deal-items{display:flex; flex-direction:column; gap:9px; margin-top:4px;}
+.deal-items li{
+  display:flex; align-items:center; gap:10px; font-size:.88rem; color:var(--text-dim);
+}
+.deal-items li::before{content:"✓"; color:var(--gold-500); font-weight:700; font-size:.8rem;}
+.deal-card .btn{margin-top:10px; justify-content:center;}
+
+/* dotted-leader lists */
+.list-card{background:var(--surface); padding:26px 28px;}
+.list-title{
+  font-family:var(--font-display); font-weight:700; font-size:1rem;
+  color:var(--gold-500); letter-spacing:.05em; text-transform:uppercase;
+  margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.menu-row{
+  display:flex; align-items:baseline; gap:8px;
+  padding:9px 0;
+  font-size:.92rem;
+}
+.menu-row .name{color:var(--text);}
+.menu-row .name .tag{font-size:.68rem; color:var(--text-faint); font-weight:400;}
+.menu-row .leader{
+  flex:1; border-bottom:1px dotted var(--border);
+  transform:translateY(-4px);
+}
+.menu-row .price{font-weight:600; color:var(--gold-500); font-variant-numeric:tabular-nums;}
+
+.subgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+@media(max-width:760px){.subgrid{grid-template-columns:1fr;}}
+
+.note-strip{
+  margin-top:18px; font-size:.78rem; color:var(--text-faint);
+  border-top:1px dashed var(--border); padding-top:12px;
+}
+
+/* highlight single item (ice shake) */
+.highlight-item{
+  display:flex; align-items:center; justify-content:space-between;
+  background:linear-gradient(135deg,var(--surface-2),var(--surface));
+  border:1px solid var(--gold-500); border-radius:10px;
+  padding:16px 20px; margin-top:16px;
+}
+.highlight-item .name{font-family:var(--font-display); font-weight:700;}
+.highlight-item .price{font-family:var(--font-display); font-size:1.3rem; color:var(--gold-500); font-weight:800;}
+
+/* ============ LOCATION ============ */
+.location-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:stretch; margin-top:40px;
+}
+@media(max-width:860px){.location-grid{grid-template-columns:1fr;}}
+.location-card{
+  background:var(--surface); padding:34px; display:flex; flex-direction:column; gap:18px; justify-content:center;
+}
+.loc-row{display:flex; gap:14px; align-items:flex-start;}
+.loc-row .ic{
+  width:38px; height:38px; border-radius:50%; border:1px solid var(--gold-500);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold-500);
+}
+.loc-row h4{font-family:var(--font-display); font-size:.95rem; margin-bottom:4px;}
+.loc-row p{color:var(--text-dim); font-size:.88rem;}
+.map-frame{border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); min-height:320px;}
+.map-frame iframe{width:100%; height:100%; min-height:320px; border:0; filter:saturate(.85);}
+
+/* ============ FOOTER ============ */
+footer{
+  background:var(--bg-alt); border-top:1px solid var(--border);
+  padding:60px 0 26px; margin-top:60px;
+}
+.footer-grid{
+  display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:40px;
+}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr; gap:30px;}}
+.footer-brand p{color:var(--text-faint); font-size:.85rem; margin-top:10px; max-width:320px;}
+.footer-col h5{font-family:var(--font-display); font-size:.85rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-500); margin-bottom:14px;}
+.footer-col a, .footer-col p{display:block; color:var(--text-dim); font-size:.86rem; margin-bottom:9px;}
+.footer-col a:hover{color:var(--gold-500);}
+.footer-bottom{
+  border-top:1px solid var(--border); padding-top:22px;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  font-size:.76rem; color:var(--text-faint);
+}
+.footer-bottom .credit{color:var(--gold-500); font-weight:500;}
+
+/* ============ WHATSAPP FLOAT ============ */
+.wa-float{
+  position:fixed; bottom:26px; right:26px; z-index:200;
+  width:58px; height:58px; border-radius:50%;
+  background:#25D366; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,.5);
+  transition:transform var(--transition);
+}
+.wa-float:hover{transform:scale(1.08);}
+
+@media(max-width:600px){
+  .nav-actions .btn-primary span.long{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">PD</div>
+      <div class="brand-name">Punjabi Dera<span>Gujrat</span></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#platters">Platters</a>
+      <a href="#parathas">Parathas</a>
+      <a href="#bbq">BBQ</a>
+      <a href="#fastfood">Fast Food</a>
+      <a href="#chai">Chai</a>
+      <a href="#drinks">Drinks</a>
+      <a href="#location">Location</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="theme-toggle" id="themeToggle" role="button" aria-label="Toggle light and dark theme">
+        <div class="knob" id="themeKnob">🌙</div>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/923348622777?text=Hi%20Punjabi%20Dera%2C%20I%27d%20like%20to%20place%20an%20order" target="_blank" rel="noopener">
+        <span class="long">Order on</span> WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-plate"><span>PD</span></div>
+    <div class="hero-tagline">Sip, Sawad, Tay Sutta!</div>
+    <h1>PUNJABI DERA</h1>
+    <p class="hero-desc">Authentic Punjabi flavour, charcoal-grilled BBQ and buttery parathas — made with tradition, served with love, right on Bhimber Road, Gujrat.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#platters">View Full Menu</a>
+      <a class="btn btn-outline" href="tel:+923348622777">Call to Order</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge"><span class="ic">🔥</span>Charcoal Grilled</div>
+      <div class="badge"><span class="ic">🌿</span>Fresh Ingredients</div>
+      <div class="badge"><span class="ic">🧑‍🍳</span>Hygienic Cooking</div>
+      <div class="badge"><span class="ic">🛵</span>Free Home Delivery</div>
+    </div>
+  </div>
+</section>
+
+<div class="catnav-wrap">
+  <div class="catnav">
+    <a href="#platters">Rice Platters</a>
+    <a href="#parathas">Parathas</a>
+    <a href="#bbq">BBQ Chicken</a>
+    <a href="#fastfood">Burgers &amp; Shawarma</a>
+    <a href="#chai">Chai &amp; Kehwa</a>
+    <a href="#drinks">Drinks &amp; Shakes</a>
+  </div>
+</div>
+
+<!-- PERSONAL RICE PLATTERS -->
+<section class="menu-section" id="platters">
+  <div class="wrap">
+    <div class="cat-head">
+      <div class="eyebrow">Perfect for One</div>
+      <h2 class="section-title">Personal Rice Platters</h2>
+      <p class="section-sub">Smoky BBQ chicken over fragrant rice — three ways to feast.</p>
+    </div>
+    <div class="deals-grid">
+
+      <div class="deal-card ornate-frame">
+        <div class="deal-num">Deal 01</div>
+        <div class="deal-name">Simple &amp; Affordable</div>
+        <div class="deal-price"><sup>Rs.</sup>700</div>
+        <ul class="deal-items">
+          <li>Rice</li><li>Leg Piece (BBQ)</li><li>Raita</li><li>Salad</li>
+        </ul>
+        <a class="btn btn-outline" href="https://wa.me/923348622777?text=I'd%20like%20to%20order%20Deal%201%20-%20Rs.700" target="_blank">Order This</a>
+      </div>
+
+      <div class="deal-card featured ornate-frame">
+        <div class="ribbon">Most Popular</div>
+        <div class="deal-num">Deal 02</div>
+        <div class="deal-name">More Taste, More Value</div>
+        <div class="deal-price"><sup>Rs.</sup>999</div>
+        <ul class="deal-items">
+          <li>Rice</li><li>Leg Piece (BBQ)</li><li>Malai Boti (4 pc)</li><li>Raita</li><li>Salad</li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.me/923348622777?text=I'd%20like%20to%20order%20Deal%202%20-%20Rs.999" target="_blank">Order This</a>
+      </div>
+
+      <div class="deal-card ornate-frame">
+        <div class="ribbon">Premium</div>
+        <div class="deal-num">Deal 03</div>
+        <div class="deal-name">The Ultimate Platter</div>
+        <div class="deal-price"><sup>Rs.</sup>1250</div>
+        <ul class="deal-items">
+          <li>Rice</li><li>Leg Piece (BBQ)</li><li>Malai Boti (4 pc)</li><li>Gola Kabab (4 pc)</li><li>Raita</li><li>Salad</li>
+        </ul>
+        <a class="btn btn-outline" href="https://wa.me/923348622777?text=I'd%20like%20to%20order%20Deal%203%20-%20Rs.1250" target="_blank">Order This</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARATHAS -->
+<section class="menu-section alt" id="parathas">
+  <div class="wrap">
+    <div class="cat-head">
+      <div class="eyebrow">Crispy · Buttery · Delicious</div>
+      <h2 class="section-title">Premium Parathas</h2>
+      <p class="section-sub">Handmade with pure butter, served hot &amp; fresh.</p>
+    </div>
+
+    <div class="subgrid">
+      <div class="list-card ornate-frame">
+        <div class="list-title">Classic Parathas</div>
+        <div class="menu-row"><span class="name">Sulemani Paratha</span><span class="leader"></span><span class="price">40</span></div>
+        <div class="menu-row"><span class="name">Puri Paratha</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="name">Lacha Paratha</span><span class="leader"></span><span class="price">99</span></div>
+        <div class="menu-row"><span class="name">Aloo Paratha</span><span class="leader"></span><span class="price">230</span></div>
+      </div>
+
+      <div class="list-card ornate-frame">
+        <div class="list-title">Cheese Special</div>
+        <div class="menu-row"><span class="name">Aloo Cheese Paratha</span><span class="leader"></span><span class="price">280</span></div>
+        <div class="menu-row"><span class="name">Cheese Paratha</span><span class="leader"></span><span class="price">349</span></div>
+        <div class="menu-row"><span class="name">Chicken Cheese Paratha</span><span class="leader"></span><span class="price">349</span></div>
+      </div>
+
+      <div class="list-card ornate-frame">
+        <div class="list-title">Premium Chicken</div>
+        <div class="menu-row"><span class="name">Chicken Paratha</span><span class="leader"></span><span class="price">299</span></div>
+        <div class="menu-row"><span class="name">Malai Boti Paratha</span><span class="leader"></span><span class="price">549</span></div>
+        <div class="menu-row"><span class="name">BBQ Paratha</span><span class="leader"></span><span class="price">349</span></div>
+        <div class="menu-row"><span class="name">Peri Peri Paratha</span><span class="leader"></span><span class="price">449</span></div>
+        <div class="menu-row"><span class="name">Pizza Paratha</span><span class="leader"></span><span class="price">480</span></div>
+      </div>
+
+      <div class="list-card ornate-frame">
+        <div class="list-title">Egg Parathas</div>
+        <div class="menu-row"><span class="name">Anda Paratha</span><span class="leader"></span><span class="price">249</span></div>
+        <div class="menu-row"><span class="name">Anda Cheese Paratha</span><span class="leader"></span><span class="price">299</span></div>
+        <div class="list-title" style="margin-top:22px;">Sweet Parathas</div>
+        <div class="menu-row"><span class="name">Shakar Paratha</span><span class="leader"></span><span class="price">320</span></div>
+        <div class="menu-row"><span class="name">Nutella Paratha</span><span class="leader"></span><span class="price">420</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BBQ -->
+<section class="menu-section" id="bbq">
+  <div class="wrap">
+    <div class="cat-head">
+      <div class="eyebrow">Smoky · Juicy · Authentic</div>
+      <h2 class="section-title">Premium BBQ Chicken</h2>
+      <p class="section-sub">Grilled to perfection over charcoal, fresh chicken daily.</p>
+    </div>
+    <div class="list-card ornate-frame">
+      <div class="subgrid" style="gap:0 40px;">
+        <div>
+          <div class="menu-row"><span class="name">Leg Piece <span class="tag">tender &amp; smoky</span></span><span class="leader"></span><span class="price">380</span></div>
+          <div class="menu-row"><span class="name">Tikka Boti (4 pc)</span><span class="leader"></span><span class="price">200</span></div>
+          <div class="menu-row"><span class="name">Bihari Boti (4 pc)</span><span class="leader"></span><span class="price">299</span></div>
+          <div class="menu-row"><span class="name">Shish Tauk (4 pc)</span><span class="leader"></span><span class="price">280</span></div>
+          <div class="menu-row"><span class="name">Malai Boti (4 pc)</span><span class="leader"></span><span class="price">299</span></div>
+        </div>
+        <div>
+          <div class="menu-row"><span class="name">Hari Bari Boti</span><span class="leader"></span><span class="price">299</span></div>
+          <div class="menu-row"><span class="name">Reshami Kabab</span><span class="leader"></span><span class="price">199</span></div>
+          <div class="menu-row"><span class="name">Pizza Kabab</span><span class="leader"></span><span class="price">220</span></div>
+          <div class="menu-row"><span class="name">Gola Kabab (4 pc)</span><span class="leader"></span><span class="price">250</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAST FOOD -->
+<section class="menu-section alt" id="fastfood">
+  <div class="wrap">
+    <div class="cat-head">
+      <div class="eyebrow">Sip, Sawad, Tay Sutta</div>
+      <h2 class="section-title">Burgers, Shawarma &amp; Sandwiches</h2>
+    </div>
+    <div class="subgrid">
+      <div class="list-card ornate-frame">
+        <div class="list-title">Burger</div>
+        <div class="menu-row"><span class="name">Zinger Burger</span><span class="leader"></span><span class="price">400</span></div>
+        <div class="menu-row"><span class="name">Zinger Cheese Burger</span><span class="leader"></span><span class="price">450</span></div>
+        <div class="menu-row"><span class="name">Chicken Patty Burger</span><span class="leader"></span><span class="price">350</span></div>
+        <div class="menu-row"><span class="name">Chicken Cheese Patty Burger</span><span class="leader"></span><span class="price">400</span></div>
+        <div class="menu-row"><span class="name">Kabab Burger</span><span class="leader"></span><span class="price">350</span></div>
+        <div class="menu-row"><span class="name">Grilled Burger</span><span class="leader"></span><span class="price">450</span></div>
+        <div class="menu-row"><span class="name">Mighty Tower Burger</span><span class="leader"></span><span class="price">650</span></div>
+      </div>
+      <div>
+        <div class="list-card ornate-frame">
+          <div class="list-title">Shawarma</div>
+          <div class="menu-row"><span class="name">Chicken Tikka Shawarma</span><span class="leader"></span><span class="price">320</span></div>
+          <div class="menu-row"><span class="name">Zinger Shawarma</span><span class="leader"></span><span class="price">430</span></div>
+          <div class="menu-row"><span class="name">Malai Boti Shawarma</span><span class="leader"></span><span class="price">400</span></div>
+          <div class="menu-row"><span class="name">Kabab Shawarma</span><span class="leader"></span><span class="price">320</span></div>
+          <div class="menu-row"><span class="name">Platter Shawarma</span><span class="leader"></span><span class="price">549</span></div>
+        </div>
+        <div class="list-card ornate-frame" style="margin-top:22px;">
+          <div class="list-title">Sandwich</div>
+          <div class="menu-row"><span class="name">Chicken Sandwich</span><span class="leader"></span><span class="price">499</span></div>
+          <div class="menu-row"><span class="name">Club Sandwich</span><span class="leader"></span><span class="price">549</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAI & KEHWA -->
+<section class="menu-section" id="chai">
+  <div class="wrap">
+    <div class="cat-head">
+      <div class="eyebrow">Perfect Blend</div>
+      <h2 class="section-title">Chai &amp; Kehwa</h2>
+    </div>
+    <div class="subgrid">
+      <div class="list-card ornate-frame">
+        <div class="list-title">Kehwa</div>
+        <div class="menu-row"><span class="name">Mint Kehwa</span><span class="leader"></span><span class="price">140</span></div>
+        <div class="menu-row"><span class="name">Peshawari Kehwa</span><span class="leader"></span><span class="price">140</span></div>
+        <div class="menu-row"><span class="name">Lemon Grass</span><span class="leader"></span><span class="price">140</span></div>
+        <div class="note-strip">Disposable charges Rs. 30 (if applicable)</div>
+      </div>
+      <div class="list-card ornate-frame">
+        <div class="list-title">Chai</div>
+        <div class="menu-row"><span class="name">Karak Chai</span><span class="leader"></span><span class="price">150</span></div>
+        <div class="menu-row"><span class="name">Doodh Patti</span><span class="leader"></span><span class="price">170</span></div>
+        <div class="menu-row"><span class="name">Extra Karak Chai</span><span class="leader"></span><span class="price">180</span></div>
+        <div class="menu-row"><span class="name">Gurr Wali Chai</span><span class="leader"></span><span class="price">180</span></div>
+        <div class="menu-row"><span class="name">Ilaichi Chai</span><span class="leader"></span><span class="price">210</span></div>
+        <div class="menu-row"><span class="name">Masala Chai</span><span class="leader"></span><span class="price">220</span></div>
+        <div class="menu-row"><span class="name">Kashmiri Chai</span><span class="leader"></span><span class="price">250</span></div>
+        <div class="menu-row"><span class="name">Black Coffee</span><span class="leader"></span><span class="price">250</span></div>
+        <div class="menu-row"><span class="name">Coffee</span><span class="leader"></span><span class="price">320</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DRINKS -->
+<section class="menu-section alt" id="drinks">
+  <div class="wrap">
+    <div class="cat-head">
+      <div class="eyebrow">Cool Down</div>
+      <h2 class="section-title">Drinks, Margarita &amp; Shakes</h2>
+    </div>
+    <div class="subgrid">
+      <div class="list-card ornate-frame">
+        <div class="list-title">Drinks</div>
+        <div class="menu-row"><span class="name">Can</span><span class="leader"></span><span class="price">120</span></div>
+        <div class="menu-row"><span class="name">7Up / Sting (NR)</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="name">Water Regular</span><span class="leader"></span><span class="price">60</span></div>
+        <div class="menu-row"><span class="name">Water 1.5 Ltr</span><span class="leader"></span><span class="price">110</span></div>
+        <div class="menu-row"><span class="name">Sting</span><span class="leader"></span><span class="price">110</span></div>
+        <div class="menu-row"><span class="name">Drink 1 Ltr</span><span class="leader"></span><span class="price">180</span></div>
+        <div class="menu-row"><span class="name">Drink 1.5 Ltr</span><span class="leader"></span><span class="price">220</span></div>
+      </div>
+      <div>
+        <div class="list-card ornate-frame">
+          <div class="list-title">Margarita</div>
+          <div class="menu-row"><span class="name">Fresh Lime</span><span class="leader"></span><span class="price">200</span></div>
+          <div class="menu-row"><span class="name">Mint Margarita</span><span class="leader"></span><span class="price">250</span></div>
+          <div class="menu-row"><span class="name">Strawberry Margarita</span><span class="leader"></span><span class="price">250</span></div>
+        </div>
+        <div class="list-card ornate-frame" style="margin-top:22px;">
+          <div class="list-title">Ice Shake</div>
+          <div class="highlight-item">
+            <span class="name">Chocolate Ice Shake</span>
+            <span class="price">Rs. 500</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="menu-section" id="location">
+  <div class="wrap">
+    <div class="cat-head">
+      <div class="eyebrow">Find Us</div>
+      <h2 class="section-title">Visit Punjabi Dera</h2>
+    </div>
+    <div class="location-grid">
+      <div class="location-card ornate-frame">
+        <div class="loc-row">
+          <div class="ic">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>Punjabi Dera, Opposite Qand Fishan Sweets,<br>Bhimber Road, Bhimber Road Area,<br>Gujrat, 50700, Pakistan</p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">💬</div>
+          <div>
+            <h4>Call or WhatsApp</h4>
+            <p>0334 8622777</p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">🛵</div>
+          <div>
+            <h4>Home Delivery</h4>
+            <p>Free home delivery available across Gujrat</p>
+          </div>
+        </div>
+        <a class="btn btn-primary" style="justify-content:center; margin-top:6px;" href="https://www.google.com/maps/search/?api=1&query=Punjabi+Dera+Opposite+Qand+Fishan+Sweets+Bhimber+Road+Gujrat" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="map-frame">
+        <iframe loading="lazy" src="https://www.google.com/maps?q=Punjabi+Dera+Opposite+Qand+Fishan+Sweets+Bhimber+Road+Gujrat&output=embed" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-mark">PD</div>
+          <div class="brand-name">Punjabi Dera<span>Gujrat</span></div>
+        </div>
+        <p>Taste of Punjabi in every bite. Authentic recipes, charcoal BBQ, and buttery parathas — made with tradition, served with love.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Menu</h5>
+        <a href="#platters">Rice Platters</a>
+        <a href="#parathas">Parathas</a>
+        <a href="#bbq">BBQ Chicken</a>
+        <a href="#fastfood">Burgers &amp; Shawarma</a>
+        <a href="#chai">Chai &amp; Kehwa</a>
+        <a href="#drinks">Drinks &amp; Shakes</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="https://wa.me/923348622777" target="_blank">WhatsApp: 0334 8622777</a>
+        <a href="tel:+923348622777">Call Now</a>
+        <p>Opposite Qand Fishan Sweets,<br>Bhimber Road, Gujrat, 50700</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Punjabi Dera, Gujrat. All rights reserved.</span>
+      <span>Made by <span class="credit">Instagram Elite Website Hub</span></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/923348622777?text=Hi%20Punjabi%20Dera%2C%20I%27d%20like%20to%20place%20an%20order" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 32 32" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.377.7 4.588 1.902 6.445L4 29l7.73-1.865A11.94 11.94 0 0016 27c6.627 0 12-5.373 12-12S22.628 3 16.001 3zm0 21.75c-1.98 0-3.83-.55-5.41-1.5l-.386-.23-4.59 1.108 1.128-4.47-.252-.398A9.71 9.71 0 016.25 15c0-5.385 4.365-9.75 9.751-9.75S25.75 9.615 25.75 15 21.386 24.75 16.001 24.75zm5.34-7.29c-.293-.147-1.734-.856-2.003-.953-.269-.098-.465-.147-.66.146-.196.293-.758.953-.929 1.148-.171.196-.343.22-.636.073-.293-.146-1.236-.455-2.354-1.452-.87-.776-1.457-1.735-1.628-2.028-.171-.293-.018-.451.128-.597.132-.13.293-.343.44-.514.146-.171.195-.293.293-.489.098-.196.049-.367-.024-.514-.073-.146-.66-1.589-.904-2.176-.238-.573-.48-.495-.66-.504l-.562-.01a1.08 1.08 0 00-.783.366c-.269.293-1.026 1.002-1.026 2.444s1.05 2.835 1.196 3.031c.146.196 2.066 3.157 5.007 4.43.699.302 1.245.482 1.67.617.702.223 1.34.192 1.845.116.563-.084 1.734-.709 1.978-1.393.244-.685.244-1.271.171-1.393-.073-.122-.269-.196-.562-.342z"/></svg>
+</a>
+
+<script>
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const knob = document.getElementById('themeKnob');
+
+  function applyIcon(){
+    knob.textContent = html.getAttribute('data-theme') === 'dark' ? '🌙' : '☀️';
+  }
+  applyIcon();
+
+  toggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    applyIcon();
+  });
+</script>
+
+</body>
+</html>
